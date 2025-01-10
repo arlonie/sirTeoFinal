@@ -267,6 +267,8 @@ $snapshot = $database->getReference($referenceTable)->getValue();
 
 </html>
 
+<<<<<<< HEAD
+=======
 
 <?php
 session_start();
@@ -537,3 +539,4 @@ $snapshot = $database->getReference($referenceTable)->getValue();
 
 </html>
 
+>>>>>>> 31aebd9c1d85b62f9f7ad4e884608df22eec1209
