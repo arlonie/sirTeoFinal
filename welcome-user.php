@@ -1,5 +1,6 @@
 <?php
 session_start();
+// Second ni Sir na kay na double na
 
 // Check if the user is logged in
 if (!isset($_SESSION['email'])) {

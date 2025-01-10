@@ -1,0 +1,44 @@
+name: PHP Website CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  php-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up PHP environment
+      - name: Set up PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      # Step 3: Install dependencies if composer.json is present
+      - name: Install dependencies
+        run: |
+          if [ -f "composer.json" ]; then composer install; else echo "No composer.json, skipping dependencies."; fi
+
+      # Step 4: Lint all PHP files for syntax errors
+      - name: Lint PHP files
+        run: |
+          find . -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      # Step 5: (Optional) Placeholder for validating other files
+      - name: Validate HTML/CSS/JS files
+        run: |
+          echo "Add specific validation tools for HTMLHint, CSSLint, or JSHint as needed."
+
+      # Step 6: (Optional) Run tests if available
+      - name: Run tests
+        run: |
+          if [ -f "phpunit.xml" ]; then ./vendor/bin/phpunit; else echo "No tests found, add tests using PHPUnit or other frameworks."; fi
